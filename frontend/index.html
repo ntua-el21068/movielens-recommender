@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Movie Lens</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <header class="top-bar">
+        <h1 class="logo">My Movie Lens</h1>
+        <button id="add-movie-btn" class="icon-btn" title="Add a Movie">+</button>
+    </header>
+
+    <div id="fun-pointer" class="fun-pointer">
+        <p class="pointer-text">Click here to add a movie!</p>
+        <svg width="60" height="60" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 15,85 Q 65,75 80,25" fill="transparent" stroke="#00d2ff" stroke-width="6" stroke-linecap="round"/>
+                    <path d="M 60,35 L 80,25 L 85,50" fill="transparent" stroke="#00d2ff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+    </div>
+
+    <main class="container">
+        
+        <section class="search-section">
+            <div class="search-wrapper">
+                <input type="text" id="search-input" placeholder="Search a movie by keyword...">
+                <button id="search-btn" class="primary-btn">Search</button>
+            </div>
+            <div class="search-wrapper" style="margin-top: 15px;">
+                <input type="text" id="tag-search-input" placeholder="Search a movie by tag ...">
+                <button id="tag-search-btn" class="primary-btn">Tag Search</button>
+            </div>
+            
+            <div class="action-row">
+                <button id="recommendations-btn" class="secondary-btn"> Get Recommendations</button>
+            </div>
+        </section>
+
+        <h2 id="section-title" class="section-title"></h2>
+
+        <section id="results-container" class="results-grid">
+            <div class="empty-state">
+                <p>Search for a movie to begin, or ask for recommendations.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="add-movie-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add a New Movie</h2>
+                <button id="close-modal-btn" class="close-btn">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="new-movie-title">Movie Title & Year</label>
+                    <input type="text" id="new-movie-title" placeholder="e.g. The Matrix (1999)" required>
+                </div>
+
+                <div class="input-group">
+                    <label>Select Genres</label>
+                    <div id="genre-selector" class="genre-pills-container">
+                        </div>
+                </div>
+
+                <div id="modal-error-msg" class="error-msg"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="cancel-movie-btn" class="secondary-btn" style="margin-top: 0;">Cancel</button>
+                <button id="submit-movie-btn" class="primary-btn" style="border-radius: 8px;">Add Movie</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast-notification" class="toast"></div>
+
+    <script src="index.js"></script>
+</body>
+</html>

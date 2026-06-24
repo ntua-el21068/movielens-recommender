@@ -1,0 +1,513 @@
+/* --- CSS VARIABLES (The Theme) --- */
+:root {
+    --bg-dark: #0f1115;       /* Deep space background */
+    --bg-surface: #1c1f26;    /* Slightly lighter for cards/inputs */
+    --text-main: #f0f2f5;     /* Off-white for readability */
+    --text-muted: #8b92a5;    /* Grey for hints/empty states */
+    --accent: #00d2ff;        /* Neon Cyan for buttons/glows */
+    --accent-hover: #3a7bd5;  /* Deep blue for hover states */
+    --font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* --- RESET & BASICS --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-family);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- HEADER --- */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background-color: rgba(28, 31, 38, 0.8); /* Semi-transparent */
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    background: linear-gradient(to right, var(--accent), #fff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- BUTTONS --- */
+button {
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    font-weight: 600;
+    transition: all 0.3s ease; /* Smooth animations */
+}
+
+/* The Plus Button */
+.icon-btn {
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%; /* Makes it a circle */
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.icon-btn:hover {
+    background-color: var(--accent);
+    color: #000;
+    transform: rotate(90deg) scale(1.1); /* Cool spinning hover effect */
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+}
+
+.primary-btn {
+    background-color: var(--accent);
+    color: #000;
+    padding: 0 1.5rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.primary-btn:hover {
+    background-color: var(--accent-hover);
+    color: white;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.secondary-btn:hover {
+    background-color: var(--accent);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+}
+
+/* --- MAIN CONTAINER & SEARCH --- */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 1rem;
+    width: 100%;
+}
+
+.search-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.search-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+    height: 55px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* ---------- */
+#search-input, #tag-search-input {
+    flex-grow: 1; 
+    background-color: var(--bg-surface);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-right: none;
+    border-radius: 8px 0 0 8px; 
+    padding: 0 1.5rem;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+#search-input:focus, #tag-search-input:focus {
+    border-color: var(--accent);
+}
+/* ---------- */
+
+/* --- RESULTS AREA --- */
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    padding: 3rem;
+}
+
+/* --- MOVIE RESULTS STYLING --- */
+.results-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between rows */
+    margin-top: 2rem;
+}
+
+.movie-card {
+    background-color: var(--bg-surface);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    border-color: rgba(0, 210, 255, 0.3); /* Glow border on hover */
+}
+
+.movie-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.movie-genres {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* --- STAR RATINGS (Static Average) --- */
+.movie-rating {
+    text-align: right;
+}
+.stars-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.star {
+    font-size: 1.5rem;
+    color: #444; 
+    position: relative;
+    display: inline-block;
+}
+.star.filled {
+    color: #ffd700;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4); 
+}
+/* The trick to render a perfect gold half-star */
+.star.half-filled::after {
+    content: '★';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+    color: #ffd700;
+}
+.rating-number {
+    margin-left: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-main);
+}
+.no-rating {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* --- USER RATING UI (Interactive) --- */
+.user-rating-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 8px;
+    gap: 8px;
+}
+.user-rating-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.user-stars-wrapper {
+    display: flex;
+    gap: 3px;
+    cursor: pointer;
+}
+.user-star {
+    font-size: 1.2rem;
+    color: transparent; 
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4); 
+    transition: transform 0.15s ease;
+    position: relative;
+    display: inline-block;
+}
+/* Ensure the trick element doesn't block the mouse clicks */
+.user-star::after {
+    pointer-events: none; 
+}
+.user-star.hover-active, .user-star.active {
+    color: white;
+    -webkit-text-stroke: 1px white;
+}
+.user-star.hover-active, .user-star.hover-half-active {
+    transform: scale(1.15);
+}
+.user-star.active, .user-star.half-active {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+/* The trick to render a perfect white interactive half-star */
+.user-star.hover-half-active::after, .user-star.half-active::after {
+    content: '★';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    overflow: hidden;
+    color: white;
+    -webkit-text-stroke: 1px white;
+}
+
+@keyframes pulseGlow {
+    0% { transform: scale(1); text-shadow: none; }
+    50% { transform: scale(1.05); text-shadow: 0 0 15px var(--accent); }
+    100% { transform: scale(1); text-shadow: none; }
+}
+.pulse-update .rating-number {
+    animation: pulseGlow 0.5s ease;
+    color: var(--accent);
+}
+
+/* --- SECTION TITLE --- */
+.section-title {
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-top: 2rem;
+    margin-bottom: -1rem; /* Pulls it closer to the first result */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    display: none; /* Hidden until we search or recommend */
+}
+
+/* ========================================= */
+/* MODAL STYLES (The Blurred Overlay)        */
+/* ========================================= */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark overlay */
+    backdrop-filter: blur(8px); /* The blur effect you asked for! */
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--bg-surface);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    padding: 2rem;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: white;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+#new-movie-title {
+    width: 100%;
+    background-color: var(--bg-dark);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    color: white;
+    font-size: 1rem;
+}
+
+/* GENRE PILLS */
+.genre-pills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.genre-pill {
+    background-color: var(--bg-dark);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.genre-pill.selected {
+    background-color: rgba(0, 210, 255, 0.1);
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+}
+
+.error-msg {
+    color: #ff4c4c;
+    font-size: 0.9rem;
+    min-height: 20px;
+    margin-bottom: 1rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* ========================================= */
+/* TOAST NOTIFICATION (Success Message)      */
+/* ========================================= */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--accent); /* Bright neon cyan */
+    color: #000; /* Black text for contrast */
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 210, 255, 0.4);
+    font-weight: bold;
+    font-size: 1.1rem;
+    z-index: 2000;
+    
+    /* Animation setup */
+    transform: translateY(150px); /* Starts hidden below the screen */
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncy slide-in */
+}
+
+.toast.show {
+    transform: translateY(0); /* Slides up to normal position */
+    opacity: 1;
+}
+
+/* ========================================= */
+/* FUN ARROW POINTER                         */
+/* ========================================= */
+.fun-pointer {
+    position: absolute;
+    top: 90px; /* Βγαίνει ακριβώς κάτω από το header */
+    right: 6%; /* Ευθυγραμμίζεται τέλεια με το κουμπί + */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 50;
+    pointer-events: none; /* Για να μην εμποδίζει τα κλικ του ποντικιού σου */
+    animation: bounceGently 1.5s infinite ease-in-out;
+}
+
+.pointer-text {
+    color: var(--accent);
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun "χειρόγραφη" γραμματοσειρά */
+    font-size: 1.1rem;
+    transform: rotate(-8deg); /* Ελαφριά, παιχνιδιάρικη κλίση */
+    margin-bottom: -10px;
+    margin-right: 65px; /* Το σπρώχνει λίγο αριστερά από την ουρά του βέλους */
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.4);
+}
+
+.pointer-arrow {
+    width: 70px;
+    height: 70px;
+}
+
+/* Animation για να πηγαίνει πάνω-κάτω απαλά και να τραβάει το μάτι */
+@keyframes bounceGently {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ---------- */
+.movies-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+.movies-table th, .movies-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: var(--text-main);
+}
+.movies-table th {
+    background-color: rgba(0, 210, 255, 0.1);
+    color: var(--accent);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.movies-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+/* ---------- */
