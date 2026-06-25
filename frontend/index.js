@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const genreContainer = document.getElementById('genre-selector');
     const errorMsg = document.getElementById('modal-error-msg');
 
-    const API_BASE = 'https://movielens-api.onrender.com/movielens/api';
+    const API_BASE = 'https://movielens-api-jsv0.onrender.com/movielens/api';
     let sessionRatings = {}; 
 
     const toast = document.getElementById('toast-notification');
